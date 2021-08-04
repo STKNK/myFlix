@@ -1,5 +1,13 @@
 const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+
 const app = express();
+
+// Middleware
+app.use(express.static('public')); // retrives files from public folder
+app.use(morgan('common')); // logging with Morgan
+app.use(bodyParser.json()); // JSON Parsing
 
 let topMovies = [
   {
@@ -54,6 +62,6 @@ app.get('/', (req, res) => {
 });
 
 // listen for requests
-app.listen(8080, () =>
+app.listen(8080, () => {
   console.log('Your app is listening on port 8080.');
-);
+});
